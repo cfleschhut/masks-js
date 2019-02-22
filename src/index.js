@@ -1,6 +1,4 @@
-function sayHiTo(name) {
-  return `Hi, ${name}`;
-}
+const sayHiTo = name => `Hi, ${name}`;
 
 const message = sayHiTo('Bruno');
 
