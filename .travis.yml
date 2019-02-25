@@ -1,14 +1,14 @@
 language: node_js
+
 node_js:
   - node
-before_deploy:
-  - npm run build
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: weltrekordhalter@gmail.com
-  api_key:
-    secure: Up+RtsAcPDt0tzf58Zudcl6JVOQ7i/T1/dZzkrwe5rRw7iyt7Kn62QEXNNEN+SPte+X0XbNRXuuKYIxNsSVp7QcxKOFQ6xwEY2rGTA/gFxBHgrwWDKbf1pnqFlo7CcrsGLwqPWRH0dYLs7Wa1+lubU8iE2jzZoZ2gAld1vzBguewcHzq0N20EUsxwmUzeyhYBGYGrmiYagG0Wxu7hEC5ow1MsElU+EhM3pJ1yq2cMNXNaEKmtPLkkKFJ7pyiWzFxbRCeuudjG+ps2CcLe4uWj7CQylzFdKoXyPpi74+msy2glAmJWXFQaw8F8AyMAFxwSqRMDamSpOA3fNOm0flATEC+yA1hBsP6KtWMptyCfz0l/nuDdwbfhIdnaMlCNlUzR2P2yr2Iblwo7qeBnk1XBmh3nozAFL/CcgBZm4vcotq28OBriRJs+ovZl4sFaNIayi8AuHXWfeyMdGlyDdqISaj5j2NeVkY0gT+xg0Qv+X/UDB1+VimpLuvQRTIN8gezDyXkuigaYhUpZAV/mpB9l7m9d9uOw+H5VVZRKVBRFFyj8wiESYXlZSNJSGWylk+ekoixK8PHKL93d4tocdo0Ivw7CTYpiQN+Q2LpTdLHlbx63UdaPuKcTRDT1hgC7SHMiVYnEzRuRqxy29fLXcNwXMwRiQ38c7T409T7nN2VF/w=
-  on:
-    tags: true
-    repo: cfleschhut/masks-js
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
